@@ -1,25 +1,26 @@
 #!/bin/bash -e
 
-VERSION=5.6.23
+echo "================= setting MySQL preReqs ==================="
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password aaa'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password aaa'
 
-# Preconfiguration setup
-sudo apt-get install -y cmake libncurses5-dev
-sudo groupadd mysql
-sudo useradd -g mysql mysql
+echo "=========== Downloading mysql 5.6 ==============="
+cd /tmp && wget http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.23-debian6.0-x86_64.deb -O mysql-5.6.23-debian6.0-x86_64.deb;
 
-# Install MySQL 5.6
-sudo wget http://downloads.mysql.com/archives/get/file/mysql-$VERSION.tar.gz
-sudo tar xzf mysql-$VERSION.tar.gz && sudo rm -f mysql-$VERSION.tar.gz
-cd mysql-$VERSION
-sudo cmake .
-sudo make && sudo make install
+echo "=========== Installing mysql 5.6 ==============="
+dpkg -i  mysql-5.6.23-debian6.0-x86_64.deb;
+rm mysql-5.6.23-debian6.0-x86_64.deb
 
-# Postinstallation setup
-cd /usr/local/mysql
-sudo chown -R mysql .
-sudo chgrp -R mysql .
-sudo scripts/mysql_install_db --user=mysql
-sudo chown -R root .
-sudo chown -R mysql data
-sudo cp support-files/mysql.server /etc/init.d/mysql
-echo 'export PATH=$PATH:/usr/local/mysql/bin' >> $HOME/.bashrc
+echo "================= Configuring MySQL ==================="
+chown -R mysql /opt/mysql/server-5.6/
+chgrp -R mysql /opt/mysql/server-5.6/
+
+ln -sf /opt/mysql/server-5.6/bin/mysqld_safe /usr/bin/mysqld_safe
+
+sudo /usr/bin/mysqld_safe &
+sleep 5
+mysqladmin -u root -p'aaa' password ''
+echo "GRANT ALL ON *.* TO shippable@localhost IDENTIFIED BY ''; FLUSH PRIVILEGES;" | mysql -uroot
+echo "GRANT ALL ON *.* TO travis@localhost IDENTIFIED BY ''; FLUSH PRIVILEGES;" | mysql -uroot
+echo "GRANT ALL ON *.* TO travis IDENTIFIED BY ''; FLUSH PRIVILEGES;" | mysql -uroot
+echo "GRANT ALL ON *.* TO ''@localhost IDENTIFIED BY ''; FLUSH PRIVILEGES;" | mysql -uroot
