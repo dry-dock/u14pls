@@ -1,4 +1,4 @@
 FROM drydock/u14:prod
 
-ADD . /tmp
-RUN /tmp/install.sh && rm -rf /tmp
+ADD . /u14pls
+RUN /u14pls/install.sh

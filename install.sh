@@ -1,14 +1,15 @@
 #!/bin/bash -e
 
-. $HOME/.bashrc
+mkdir -p /tmp
+chmod 1777 /tmp
 
-for file in /tmp/version/*;
+for file in /u14pls/version/*;
 do
   . $file
 done
 
 echo "================= Adding mysql cnf ==================="
-cp my.cnf /etc/mysql/my.cnf
+cd /u14pls && cp -rf my.cnf /etc/mysql/my.cnf
 
 echo "================= Cleaning package lists ==================="
 apt-get clean
