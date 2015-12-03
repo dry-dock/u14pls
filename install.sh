@@ -11,6 +11,9 @@ done
 echo "================= Adding mysql cnf ==================="
 cd /u14pls && cp -rf my.cnf /etc/mysql/my.cnf
 
+echo "================= Adding PostgreSQL cnf ==================="
+cd /u14pls && cp -rf pg_hba.cnf /etc/postgresql/9.4/main/pg_hba.conf
+
 echo "================= Cleaning package lists ==================="
 apt-get clean
 apt-get autoclean
