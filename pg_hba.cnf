@@ -83,6 +83,8 @@
 #
 # Database administrative login by Unix domain socket
 local   all             postgres                                trust
+host    all             postgres        127.0.0.1/32            trust
+host    all             postgres        ::1/128                 trust
 
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
