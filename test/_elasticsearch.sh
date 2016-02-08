@@ -1,22 +1,20 @@
-#!/bin/bash -e
 # Begin service ENV variables
-export SHIPPABLE_CASSANDRA_PORT=9160;
-export SHIPPABLE_CASSANDRA_BINARY="/usr/sbin/cassandra";
-export SHIPPABLE_CASSANDRA_CMD="$SHIPPABLE_CASSANDRA_BINARY -f";
+export SHIPPABLE_ES_CLUSTER_NAME=shippabletest;
+export SHIPPABLE_ES_PORT=9200;
+export SHIPPABLE_ES_BINARY="/usr/local/bin/elasticsearch";
+export SHIPPABLE_ES_CMD="$SHIPPABLE_ES_BINARY --cluster.name=$SHIPPABLE_ES_CLUSTER_NAME";
 # End service ENV variables
 
 #
-# Function to START service
+# Function to START
 #
 start_service() {
-  start_generic_service "cassandra" "$SHIPPABLE_CASSANDRA_BINARY" "$SHIPPABLE_CASSANDRA_CMD" "$SHIPPABLE_CASSANDRA_PORT";
+  start_generic_service "elasticsearch" "$SHIPPABLE_ES_BINARY" "$SHIPPABLE_ES_CMD" "$SHIPPABLE_ES_PORT";
 }
 
-#
-# Function to STOP service
-#
+# Function to stop
 stop_service() {
-  sudo su -c "kill -9 `ps aux | grep [c]assandra | awk '{print $2}'`";
+  curl -s -X POST "http://localhost:9200/_shutdown" > /dev/null 2>&1;
 }
 
 start_generic_service() {
@@ -74,11 +72,11 @@ exec_cmd() {
 #
 # Call to start service
 #
-echo "================= Starting cassandra ==================="
+echo "================= Starting elasticsearch ==================="
 printf "\n"
 start_service
 printf "\n\n"
-echo "================= Stopping cassandra ==================="
+echo "================= Stopping elasticsearch ==================="
 printf "\n"
 stop_service
 printf "\n\n"
