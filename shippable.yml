@@ -17,7 +17,14 @@ build:
   ci:
     # We can add sanity checks to ensure the image was built successfully here
     - /u14pls/test/_elasticsearch.sh
-
+    - /u14pls/test/_elasticsearch.sh
+    - /u14pls/test/_memcached.sh
+    - /u14pls/test/_mongo.sh
+    - /u14pls/test/_mysql.sh
+    - /u14pls/test/_postgres.sh
+    - /u14pls/test/_rabbitmq.sh
+    - /u14pls/test/_redis.sh
+    - /u14pls/test/_selenium.sh
   on_success:
     - if [ "$IS_PULL_REQUEST" != true ]; then docker push drydock/u14pls:tip; fi
 

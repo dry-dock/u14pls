@@ -16,7 +16,7 @@ start_service() {
 # Function to STOP
 #
 stop_service() {
-  exec_cmd "mysqladmin shutdown"
+  mysqladmin shutdown
 }
 
 source /u14pls/test/function_start_generic.sh
