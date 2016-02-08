@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 export SHIPPABLE_RABBITMQ_PORT=5672;
 export SHIPPABLE_RABBITMQ_BINARY="/usr/sbin/rabbitmq-server";

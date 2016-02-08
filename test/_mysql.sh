@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 export SHIPPABLE_START_MYSQL=true;
 export SHIPPABLE_MYSQL_PORT=3306;

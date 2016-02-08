@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 export SHIPPABLE_MEMCACHED_PORT=11211;
 export SHIPPABLE_MEMCACHED_BINARY="/usr/local/bin/memcached";

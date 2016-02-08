@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 if [ -z "$SHIPPABLE_SELENIUM_BINARY" ]; then
 	export SHIPPABLE_SELENIUM_BINARY="/usr/local/selenium/selenium-server-standalone-2.45.0.jar";

@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 export SHIPPABLE_ES_CLUSTER_NAME=shippabletest;
 export SHIPPABLE_ES_PORT=9200;

@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 export SHIPPABLE_REDIS_PORT=6379;
 export SHIPPABLE_REDIS_BINARY="/usr/bin/redis-server";

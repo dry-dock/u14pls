@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Begin service ENV variables
 export SHIPPABLE_START_POSTGRES=true;
 export SHIPPABLE_POSTGRES_PORT=5432;
