@@ -16,7 +16,7 @@ start_service() {
 # Function to STOP
 #
 stop_service() {
-  sudo su -c "/usr/bin/mongod -f --shutdown";
+  sudo su -c "/usr/bin/mongod -f /etc/mongod.conf --shutdown";
   sudo su -c "rm -rf /var/lib/mongodb/*";
 }
 
