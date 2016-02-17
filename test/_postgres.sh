@@ -19,6 +19,7 @@ start_service() {
 # Function to STOP
 #
 stop_service() {
+  sleep 30
   sudo kill -INT $(pgrep -f postgresql)
 }
 
