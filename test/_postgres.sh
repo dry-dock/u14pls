@@ -19,9 +19,7 @@ start_service() {
 # Function to STOP
 #
 stop_service() {
-  pgrep -f postgresql
   sudo kill -INT $(pgrep -f postgresql)
-  echo $?
 }
 
 source /u14pls/test/function_start_generic.sh
