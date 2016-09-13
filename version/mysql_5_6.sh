@@ -9,10 +9,10 @@ mkdir /var/log/mysql
 
 echo "=========== Downloading mysql 5.6 ==============="
 cd /usr/local
-wget -O mysql-5.6.26-linux-glibc2.5-x86_64.tar.gz https://downloads.mariadb.com/archives/mysql-5.6/mysql-5.6.26-linux-glibc2.5-x86_64.tar.gz
-tar xvfz mysql-5.6.26-linux-glibc2.5-x86_64.tar.gz
-mv mysql-5.6.26-linux-glibc2.5-x86_64 mysql
-rm mysql-5.6.26-linux-glibc2.5-x86_64.tar.gz
+wget -O mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz http://cdn.mysql.com//Downloads/MySQL-5.6/mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
+tar xvfz mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
+mv mysql-5.6.33-linux-glibc2.5-x86_64 mysql
+rm mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
 cd mysql
 chown -R mysql .
 chgrp -R mysql .
